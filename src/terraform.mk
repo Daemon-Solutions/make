@@ -14,6 +14,7 @@ TF_DOCKER_CMD = docker run --rm -it \
 	-v ~/.aws:/root/.aws:ro \
 	-v ~/.ssh:/root/.ssh:ro \
 	-v $(TF_DIRECTORY):/terraform \
+	-e "AWS_PROFILE=$(AWS_PROFILE)" \
 	$(TF_ADDITIONAL) $(TF_IMAGE)
 
 tf_%: AWS_PROFILE ?= default
