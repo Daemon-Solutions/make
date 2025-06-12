@@ -1,5 +1,11 @@
 # terraform
 
+# terraform [global options] <subcommand> [args]
+
+ifndef TF_VERSION
+$(error "TF_VERSION is not set")
+endif
+
 TF_IMAGE ?= hashicorp/terraform:$(TF_VERSION)
 TF_DIRECTORY ?= $(CURDIR)
 
@@ -11,20 +17,12 @@ TF_DOCKER_CMD = docker run --rm -it \
 	$(TF_ADDITIONAL) $(TF_IMAGE)
 
 tf_%: AWS_PROFILE ?= default
-tf_%:
-ifndef TF_VERSION
-	$(error "TF_VERSION is not set")
-endif
 
 # main commands
 
 ## init - prepare your working directory for other commands
-tf_init:
-ifdef UPGRADE
-	$(TF_DOCKER_CMD) init -upgrade
-else
-	$(TF_DOCKER_CMD) init
-endif
+tf_init tf_init_%:
+	$(TF_DOCKER_CMD) init $(ARGS)
 
 ## validate - check whether the configuration is valid
 tf_validate:
@@ -34,31 +32,31 @@ tf_validate:
 tf_plan tf_plan_%: TF_PLAN_CMD = $(TF_DOCKER_CMD) plan
 tf_plan tf_plan_%:
 ifdef REFRESH
-	$(TF_PLAN_CMD) plan -refresh-only
+	$(TF_PLAN_CMD) plan -refresh-only $(ARGS)
 else ifdef TARGET
-	$(TF_PLAN_CMD) -target '$(TARGET)'
+	$(TF_PLAN_CMD) -target '$(TARGET)' $(ARGS)
 else ifdef REPLACE
-	$(TF_PLAN_CMD) -replace '$(REPLACE)'
+	$(TF_PLAN_CMD) -replace '$(REPLACE)' $(ARGS)
 else
-	$(TF_PLAN_CMD)
+	$(TF_PLAN_CMD) $(ARGS)
 endif
 
 ## apply - create or update infrastructure
 tf_apply tf_apply_%: TF_APPLY_CMD = $(TF_DOCKER_CMD) apply
 tf_apply tf_apply_%:
 ifdef REFRESH
-	$(TF_APPLY_CMD) -refresh-only
+	$(TF_APPLY_CMD) -refresh-only $(ARGS)
 else ifdef TARGET
-	$(TF_APPLY_CMD) -target '$(TARGET)'
+	$(TF_APPLY_CMD) -target '$(TARGET)' $(ARGS)
 else ifdef REPLACE
-	$(TF_APPLY_CMD) -replace '$(REPLACE)'
+	$(TF_APPLY_CMD) -replace '$(REPLACE)' $(ARGS)
 else
-	$(TF_APPLY_CMD)
+	$(TF_APPLY_CMD) $(ARGS)
 endif
 
 ## destroy - destroy previously-created infrastructure
 tf_destroy tf_destroy_%: 
-	$(TF_DOCKER_CMD) destroy
+	$(TF_DOCKER_CMD) destroy $(ARGS)
 
 # all other commands
 
