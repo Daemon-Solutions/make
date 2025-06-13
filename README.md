@@ -32,7 +32,7 @@ init:
 	@for MAKE_FILE in $(MAKE_FILES); do docker run --rm curlimages/curl -sSL $(MAKE_URI)/$(MAKE_VERSION)/src/$${MAKE_FILE}.mk > $(MAKE_DIR)/$${MAKE_FILE}.mk; done
 ```
 
-Files can then be included into you repository folder specific Makefiles, as needed.
+Files can then be included into your repository folder specific Makefiles, as needed.
 
 #### Target/rule
 
