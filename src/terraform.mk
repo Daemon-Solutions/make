@@ -1,7 +1,5 @@
 # terraform
 
-# terraform [global options] <subcommand> [args]
-
 ifndef TF_VERSION
 $(error "TF_VERSION is not set")
 endif
@@ -19,6 +17,11 @@ TF_DOCKER_CMD = docker run --rm -it \
 
 tf_%: AWS_PROFILE ?= default
 
+tf_build:
+ifdef TF_DOCKERFILE
+	docker build -t $(TF_IMAGE) -f $(TF_DOCKERFILE) --build-arg TF_VERSION=$(TF_VERSION) .
+endif
+
 # main commands
 
 ## init - prepare your working directory for other commands
@@ -31,6 +34,7 @@ tf_validate:
 
 ## plan - show changes required by the current configuration
 tf_plan tf_plan_%: TF_PLAN_CMD = $(TF_DOCKER_CMD) plan
+tf_plan tf_plan_%: tf_build
 tf_plan tf_plan_%:
 ifdef REFRESH
 	$(TF_PLAN_CMD) plan -refresh-only $(ARGS)
@@ -44,6 +48,7 @@ endif
 
 ## apply - create or update infrastructure
 tf_apply tf_apply_%: TF_APPLY_CMD = $(TF_DOCKER_CMD) apply
+tf_apply tf_apply_%: tf_build
 tf_apply tf_apply_%:
 ifdef REFRESH
 	$(TF_APPLY_CMD) -refresh-only $(ARGS)
