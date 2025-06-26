@@ -25,6 +25,7 @@ endif
 # main commands
 
 ## init - prepare your working directory for other commands
+tf_init tf_init_%: tf_build
 tf_init tf_init_%:
 	$(TF_DOCKER_CMD) init $(ARGS)
 
