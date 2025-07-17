@@ -22,7 +22,7 @@ Alternatively, you can write a custom adaptation to replicate the same functiona
 
 ```makefile
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-MAKE_DIR = $(ROOT_DIR)/.make
+MAKE_DIR := $(ROOT_DIR)/.make
 
 init: MAKE_URI = https://raw.githubusercontent.com/daemon-solutions/make
 init: MAKE_VERSION = v0
