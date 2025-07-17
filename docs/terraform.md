@@ -64,7 +64,7 @@ For more advanced operations, such as state manipulation or specific provider ac
 - `make tf_metadata_functions`: Displays metadata about Terraform functions (JSON output).
 - `make tf_modules`: Shows all declared modules in the working directory.
 - `make tf_providers`: Shows the providers required for this configuration.
-- `make tf_providers_lock`: Manages provider lock files.
+- `make tf_providers_lock`: Manages provider lockfiles.
 - `make tf_providers_mirror DIR='<directory>'`: Mirrors provider plugins to a local directory.
 - `make tf_providers_schema`: Displays the schema for providers in the configuration.
 
