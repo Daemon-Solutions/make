@@ -120,5 +120,5 @@ version 2.0, available [here](https://www.contributor-covenant.org/version/2/0/c
 Community Impact Guidelines were inspired by [Mozilla's code of conduct
 enforcement ladder](https://github.com/mozilla/diversity).
 
-For answers to common questions about this code of conduct, see the [FAQ](https://www.contributor-covenant.org/faq). 
+For answers to common questions about this code of conduct, see the [FAQ](https://www.contributor-covenant.org/faq).
 Translations are available [here](https://www.contributor-covenant.org/translations).

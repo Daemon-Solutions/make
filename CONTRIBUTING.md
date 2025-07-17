@@ -40,14 +40,14 @@ Please review and adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md) in all y
 ## Submitting a pull request
 
 1. **Make your changes** and commit them:
-    ```bash
-    git add .
-    git commit -m "Your descriptive commit message"
-    ```
+   ```bash
+   git add .
+   git commit -m "Your descriptive commit message"
+   ```
 2. **Push your branch** to your fork on GitHub:
-    ```bash
-    git push origin your-branch-name
-    ```
+   ```bash
+   git push origin your-branch-name
+   ```
 3. **Open a pull request** on the main repository's GitHub page.
 
 ## Questions and support
