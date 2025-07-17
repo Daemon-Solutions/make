@@ -2,6 +2,8 @@
 name: Lint
 on:
   push: null
+permissions:
+  contents: read
 jobs:
   build:
     name: Lint
