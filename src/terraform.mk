@@ -15,6 +15,13 @@ TF_DOCKER_CMD = docker run --rm -it \
 	-e "AWS_PROFILE=$(AWS_PROFILE)" \
 	$(TF_ADDITIONAL) $(TF_IMAGE)
 
+.PHONY: tf_build tf_init tf_init_% tf_validate tf_plan tf_plan_% tf_apply tf_apply_% tf_destroy tf_destroy_% \
+        tf_console tf_fmt tf_force_unlock tf_get tf_graph tf_import tf_login tf_logout \
+        tf_metadata_functions tf_modules tf_output tf_providers tf_providers_lock tf_providers_mirror \
+        tf_providers_schema tf_refresh tf_show tf_state_list tf_state_mv tf_state_pull \
+        tf_state_replace_provider tf_state_rm tf_state_show tf_taint tf_untaint tf_version \
+        tf_workspace_list tf_workspace_select tf_workspace_new tf_workspace_delete tf_workspace_show
+
 tf_%: AWS_PROFILE ?= default
 
 tf_build:
@@ -143,7 +150,7 @@ tf_state_pull:
 	$(TF_DOCKER_CMD) state pull
 
 # tf_state_push:
-# 	$(TF_DOCKER_CMD) state push
+	@echo "terraform state push is not implemented yet"
 
 tf_state_replace_provider:
 	$(TF_DOCKER_CMD) state replace-provider '$(FROM_PROVIDER)' '$(TO_PROVIDER)'
