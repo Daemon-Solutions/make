@@ -1,4 +1,4 @@
-ARG TF_VERSION=lattest
+ARG TF_VERSION=latest
 
 FROM hashicorp/terraform:${TF_VERSION}
 

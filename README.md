@@ -46,7 +46,7 @@ It is also recommended ignoring the directory from your repository by adding `.m
 
 #### Version
 
-These files are versioned and follow [semantic versioning](https://semver.org/) which is achieved with git tags, 
+These files are versioned and follow [semantic versioning](https://semver.org/) which is achieved with git tags,
 each patch version is immutable and will never change while the minor and major tags are mutable and will move based on the relevant patch version.  
 It is recommended to lock your `MAKE_VERSION` to the current major version.
 
