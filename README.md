@@ -17,20 +17,8 @@ In the event other applications are needed (i.e. Git) you will receive an error 
 
 #### Setup
 
-To use these files within your repository, you can copy and paste the following code to the top of your repository `Makefile`.  
+To use these files within your repository, you can copy and paste the code from [init.mk](./examples/init.mk) to the top of your repository `Makefile`.  
 Alternatively, you can write a custom adaptation to replicate the same functionality.
-
-```makefile
-ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-MAKE_DIR := $(ROOT_DIR)/.make
-
-init: MAKE_URI = https://raw.githubusercontent.com/daemon-solutions/make
-init: MAKE_VERSION = v0
-init: MAKE_FILES = terraform
-init:
-	@rm -rf $(MAKE_DIR) && mkdir -p $(MAKE_DIR)
-	@for MAKE_FILE in $(MAKE_FILES); do docker run --rm curlimages/curl -sSL $(MAKE_URI)/$(MAKE_VERSION)/src/$${MAKE_FILE}.mk > $(MAKE_DIR)/$${MAKE_FILE}.mk; done
-```
 
 Files can then be included into your repository folder specific Makefiles, as needed.
 
