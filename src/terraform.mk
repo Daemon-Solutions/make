@@ -1,11 +1,16 @@
 # terraform
 
-ifndef TF_VERSION
-$(error "TF_VERSION is not set")
+TF_DIRECTORY ?= $(CURDIR)
+
+ifdef TF_VERSION_DETECT
+TF_VERSION = $(shell cat $(TF_DIRECTORY)/.terraform-version 2> /dev/null)
+endif
+
+ifeq ($(TF_VERSION),)
+$(error "TF_VERSION is not defined or vould not be detected")
 endif
 
 TF_IMAGE ?= hashicorp/terraform:$(TF_VERSION)
-TF_DIRECTORY ?= $(CURDIR)
 
 TF_DOCKER_CMD = docker run --rm -it \
 	-w /terraform \

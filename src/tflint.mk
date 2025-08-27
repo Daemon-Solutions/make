@@ -1,11 +1,12 @@
 # tflint
 
-ifndef TFLINT_VERSION
-$(error "TFLINT_VERSION is not set")
+TFLINT_DIRECTORY ?= $(CURDIR)
+
+ifeq ($(TFLINT_VERSION),)
+$(error "TFLINT_VERSION is not defined")
 endif
 
 TFLINT_IMAGE ?= ghcr.io/terraform-linters/tflint:$(TFLINT_VERSION)
-TFLINT_DIRECTORY ?= $(CURDIR)
 
 TFLINT_DOCKER_CMD = docker run --rm -it \
 	--entrypoint /bin/sh \
