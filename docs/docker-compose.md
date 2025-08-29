@@ -2,8 +2,8 @@
 
 ## Purpose
 
-The `Makefile` serves as a wrapper for `docker compose` commands, simplifying their execution. 
-It centralises common tasks like starting, stopping, and building services into easy-to-run `make` targets. 
+The `Makefile` serves as a wrapper for `docker compose` commands, simplifying their execution.
+It centralises common tasks like starting, stopping, and building services into easy-to-run `make` targets.
 This approach standardises the workflow for developers, ensuring consistent command usage and reducing the need to remember specific command-line flags.
 
 ## Usage
@@ -35,5 +35,5 @@ The makefile provides a set of commands for managing your Docker services.
 
 #### Not Implemented
 
-The makefile includes placeholders for many other `docker compose` commands that are not yet implemented. 
+The makefile includes placeholders for many other `docker compose` commands that are not yet implemented.
 These are intended for future development.
